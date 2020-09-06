@@ -13,6 +13,12 @@
 #include <unistd.h>
 #include <errno.h>
 
+struct stat kernel_file_stat;
+struct stat rootfs_file_stat;
+int multiboot_partition;
+char current_rootfs_device[1000];
+char vumodel[63];
+
 const char ofgwrite_version[] = "3.9.9";
 int flash_kernel = 0;
 int flash_rootfs = 0;

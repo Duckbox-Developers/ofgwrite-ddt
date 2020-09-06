@@ -1,11 +1,11 @@
 #include <sys/stat.h>
 
-struct stat kernel_file_stat;
-struct stat rootfs_file_stat;
+extern struct stat kernel_file_stat;
+extern struct stat rootfs_file_stat;
 
-int multiboot_partition;
-char current_rootfs_device[1000];
-char vumodel[63];
+extern int multiboot_partition;
+extern char current_rootfs_device[1000];
+extern char vumodel[63];
 
 enum RootfsTypeEnum
 {
