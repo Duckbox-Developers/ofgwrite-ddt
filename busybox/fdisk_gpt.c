@@ -142,7 +142,7 @@ gpt_list_table(int xtra UNUSED_PARAM)
 			int k;
 			for (k = 0; k<19; k++)
 				partname[k] = (char)p->name[k];
-			// on vusolo4k/vuduo4k/vuultimo4k/vuuno4k/vuuno4kse/vuzero4k and multiboot we call to functions force
+			// on vusolo4k/vuduo4k/vuduo4kse/vuultimo4k/vuuno4k/vuuno4kse/vuzero4k and multiboot we call to functions force
 			if (strcmp(partname, kernel_name) == 0)
 			{
 				ext4_kernel_dev_found(disk_device, i+1);

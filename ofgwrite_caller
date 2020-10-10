@@ -34,12 +34,13 @@ if [ -e /boot/STARTUP ]; then
 	[ -e /proc/stb/info/vumodel ] && vumodel=`cat /proc/stb/info/vumodel`
 	[ "$model" == "dm8000" ] && [ "$vumodel" == "solo4k" ] && model=$vumodel
 	[ "$model" == "dm8000" ] && [ "$vumodel" == "duo4k" ] && model=$vumodel
+	[ "$model" == "dm8000" ] && [ "$vumodel" == "duo4kse" ] && model=$vumodel
 	[ "$model" == "dm8000" ] && [ "$vumodel" == "ultimo4k" ] && model=$vumodel
 	[ "$model" == "dm8000" ] && [ "$vumodel" == "uno4k" ] && model=$vumodel
 	[ "$model" == "dm8000" ] && [ "$vumodel" == "uno4kse" ] && model=$vumodel
 	[ "$model" == "dm8000" ] && [ "$vumodel" == "zero4k" ] && model=$vumodel
 	case $model in
-		solo4k|duo4k|ultimo4k|uno4k|uno4kse|zero4k)
+		solo4k|duo4k|duo4kse|ultimo4k|uno4k|uno4kse|zero4k)
 			echo "VU+ 4K model found."
 			PART=`echo $@ | grep "\-m" | cut -d "m" -f2 | cut -d " " -f1`
 			echo "PART=$PART"
