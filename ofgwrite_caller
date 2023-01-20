@@ -8,21 +8,21 @@ fi
 echo "Starting ${0##*/} $@"
 
 echo "Creating tempdir"
-workdir=$(mktemp -d $1/update-XXXXXX)
+workdir=$(mktemp -d "$1/update-XXXXXX")
 cd $workdir
 
 echo "Unpacking $2 to $workdir"
-if [ "${2##*.}" = "tgz" ]; then
-	tar zxvf $2
-elif [ "${2##*.}" = "zip" ]; then
-	unzip -oj $2 -x *disk.img*
+if [ "${2##*.}" == "tgz" ]; then
+	tar zxvf "$2"
+elif [ "${2##*.}" == "zip" ]; then
+	unzip -oj "$2" -x *disk.img*
 else
 	exit 1
 fi
 
 if [ "${2:0:5}" == "/tmp/" ]; then
 	echo "Delete: $2"
-	rm -f $2
+	rm -f "$2"
 fi
 
 echo "Shifting options"
@@ -63,10 +63,14 @@ fi
 echo "Calling ofgwrite $@ $workdir"
 ofgwrite $@ $workdir
 
-#cd /tmp
-#echo "Unmounting /newroot"
-#umount /newroot
-#echo "Deleting /newroot"
-#rm -fr /newroot
-#echo "Removing tempdir"
-#rm -fr $workdir
+while pidof ofgwrite; do
+	sleep 5
+done
+
+cd /tmp
+echo "Unmounting /newroot"
+umount /newroot
+echo "Deleting /newroot"
+rm -fr /newroot
+echo "Removing tempdir"
+rm -fr $workdir
